@@ -1,0 +1,418 @@
+[
+  {
+    "id": "front-matter",
+    "title": "발간사 · 일러두기 · 목차",
+    "slug": "00-front-matter",
+    "path": "sections/00-front-matter.md",
+    "part": "front-matter",
+    "group": "front-matter",
+    "pdf_pages": [
+      3,
+      8
+    ],
+    "printed_pages": [
+      null,
+      null
+    ]
+  },
+  {
+    "id": "major-01",
+    "title": "대입전형 일정",
+    "slug": "01-major-schedule",
+    "path": "sections/01-major-schedule.md",
+    "part": "2027학년도 대입 주요 사항",
+    "group": "2027학년도 대입 주요 사항",
+    "pdf_pages": [
+      9,
+      9
+    ],
+    "printed_pages": [
+      3,
+      3
+    ]
+  },
+  {
+    "id": "major-02",
+    "title": "대입전형 시행계획 주요특징",
+    "slug": "02-major-plan-features",
+    "path": "sections/02-major-plan-features.md",
+    "part": "2027학년도 대입 주요 사항",
+    "group": "2027학년도 대입 주요 사항",
+    "pdf_pages": [
+      10,
+      28
+    ],
+    "printed_pages": [
+      4,
+      22
+    ]
+  },
+  {
+    "id": "major-03",
+    "title": "2027학년도 대입전형 특징 요약",
+    "slug": "03-major-summary",
+    "path": "sections/03-major-summary.md",
+    "part": "2027학년도 대입 주요 사항",
+    "group": "2027학년도 대입 주요 사항",
+    "pdf_pages": [
+      29,
+      31
+    ],
+    "printed_pages": [
+      23,
+      25
+    ]
+  },
+  {
+    "id": "major-04",
+    "title": "전년대비 변경사항",
+    "slug": "04-major-changes",
+    "path": "sections/04-major-changes.md",
+    "part": "2027학년도 대입 주요 사항",
+    "group": "2027학년도 대입 주요 사항",
+    "pdf_pages": [
+      32,
+      92
+    ],
+    "printed_pages": [
+      26,
+      86
+    ]
+  },
+  {
+    "id": "regular-01",
+    "title": "학생부교과전형",
+    "slug": "05-student-record-subject",
+    "path": "sections/05-student-record-subject.md",
+    "part": "1부 수시모집",
+    "group": "1부 수시모집",
+    "pdf_pages": [
+      93,
+      147
+    ],
+    "printed_pages": [
+      87,
+      141
+    ]
+  },
+  {
+    "id": "regular-02",
+    "title": "학생부종합전형",
+    "slug": "06-student-record-comprehensive",
+    "path": "sections/06-student-record-comprehensive.md",
+    "part": "1부 수시모집",
+    "group": "1부 수시모집",
+    "pdf_pages": [
+      148,
+      192
+    ],
+    "printed_pages": [
+      142,
+      186
+    ]
+  },
+  {
+    "id": "regular-03",
+    "title": "논술전형",
+    "slug": "07-essay",
+    "path": "sections/07-essay.md",
+    "part": "1부 수시모집",
+    "group": "1부 수시모집",
+    "pdf_pages": [
+      193,
+      228
+    ],
+    "printed_pages": [
+      187,
+      222
+    ]
+  },
+  {
+    "id": "regular-04",
+    "title": "수능전형(예체능 제외)",
+    "slug": "08-suneung",
+    "path": "sections/08-suneung.md",
+    "part": "2부 정시모집",
+    "group": "2부 정시모집",
+    "pdf_pages": [
+      229,
+      266
+    ],
+    "printed_pages": [
+      223,
+      260
+    ]
+  },
+  {
+    "id": "special-01",
+    "title": "기회균형 선발 대상자(통합)전형",
+    "slug": "09-opportunity-integrated",
+    "path": "sections/09-opportunity-integrated.md",
+    "part": "특별전형",
+    "group": "기회균형 특별전형",
+    "pdf_pages": [
+      267,
+      276
+    ],
+    "printed_pages": [
+      261,
+      270
+    ]
+  },
+  {
+    "id": "special-02",
+    "title": "농어촌학생 특별전형",
+    "slug": "10-rural",
+    "path": "sections/10-rural.md",
+    "part": "특별전형",
+    "group": "기회균형 특별전형",
+    "pdf_pages": [
+      277,
+      294
+    ],
+    "printed_pages": [
+      271,
+      288
+    ]
+  },
+  {
+    "id": "special-03",
+    "title": "기초생활수급자·차상위계층·한부모가족지원대상자 특별전형",
+    "slug": "11-low-income",
+    "path": "sections/11-low-income.md",
+    "part": "특별전형",
+    "group": "기회균형 특별전형",
+    "pdf_pages": [
+      295,
+      309
+    ],
+    "printed_pages": [
+      289,
+      303
+    ]
+  },
+  {
+    "id": "special-04",
+    "title": "특성화고교졸업자 특별전형",
+    "slug": "12-vocational",
+    "path": "sections/12-vocational.md",
+    "part": "특별전형",
+    "group": "기회균형 특별전형",
+    "pdf_pages": [
+      310,
+      318
+    ],
+    "printed_pages": [
+      304,
+      312
+    ]
+  },
+  {
+    "id": "special-05",
+    "title": "장애인 등 대상자 특별전형",
+    "slug": "13-disability",
+    "path": "sections/13-disability.md",
+    "part": "특별전형",
+    "group": "기회균형 특별전형",
+    "pdf_pages": [
+      319,
+      325
+    ],
+    "printed_pages": [
+      313,
+      319
+    ]
+  },
+  {
+    "id": "special-06",
+    "title": "지역인재 특별전형",
+    "slug": "14-regional",
+    "path": "sections/14-regional.md",
+    "part": "특별전형",
+    "group": "지역인재 특별전형",
+    "pdf_pages": [
+      326,
+      384
+    ],
+    "printed_pages": [
+      320,
+      378
+    ]
+  },
+  {
+    "id": "analysis-01",
+    "title": "2027학년도 의치약한수계열 개요",
+    "slug": "15-medical-overview",
+    "path": "sections/15-medical-overview.md",
+    "part": "계열별 전형 분석과 준비",
+    "group": "의치약한수계열",
+    "pdf_pages": [
+      385,
+      389
+    ],
+    "printed_pages": [
+      379,
+      383
+    ]
+  },
+  {
+    "id": "analysis-02",
+    "title": "2027학년도 의치약한수계열 특징",
+    "slug": "16-medical-features",
+    "path": "sections/16-medical-features.md",
+    "part": "계열별 전형 분석과 준비",
+    "group": "의치약한수계열",
+    "pdf_pages": [
+      390,
+      430
+    ],
+    "printed_pages": [
+      384,
+      424
+    ]
+  },
+  {
+    "id": "analysis-03",
+    "title": "의학계열 2024~2026학년도 입학정보 분석 현황",
+    "slug": "17-medical-analysis",
+    "path": "sections/17-medical-analysis.md",
+    "part": "계열별 전형 분석과 준비",
+    "group": "의치약한수계열",
+    "pdf_pages": [
+      431,
+      474
+    ],
+    "printed_pages": [
+      425,
+      468
+    ]
+  },
+  {
+    "id": "analysis-04",
+    "title": "교육계열(초등교육)",
+    "slug": "18-education",
+    "path": "sections/18-education.md",
+    "part": "계열별 전형 분석과 준비",
+    "group": "교육계열",
+    "pdf_pages": [
+      475,
+      484
+    ],
+    "printed_pages": [
+      469,
+      478
+    ]
+  },
+  {
+    "id": "analysis-05",
+    "title": "이공계 특성화 대학",
+    "slug": "19-science-specialized",
+    "path": "sections/19-science-specialized.md",
+    "part": "계열별 전형 분석과 준비",
+    "group": "이공계 특성화 대학",
+    "pdf_pages": [
+      485,
+      490
+    ],
+    "printed_pages": [
+      479,
+      484
+    ]
+  },
+  {
+    "id": "analysis-06",
+    "title": "전공자율선택제",
+    "slug": "20-major-free-choice",
+    "path": "sections/20-major-free-choice.md",
+    "part": "계열별 전형 분석과 준비",
+    "group": "전공자율선택제",
+    "pdf_pages": [
+      491,
+      563
+    ],
+    "printed_pages": [
+      485,
+      557
+    ]
+  },
+  {
+    "id": "analysis-07",
+    "title": "계약학과·첨단학과",
+    "slug": "21-contract-cutting-edge",
+    "path": "sections/21-contract-cutting-edge.md",
+    "part": "계열별 전형 분석과 준비",
+    "group": "계약학과·첨단학과",
+    "pdf_pages": [
+      564,
+      580
+    ],
+    "printed_pages": [
+      558,
+      574
+    ]
+  },
+  {
+    "id": "analysis-08",
+    "title": "예체능계열(실기·실적전형 제외)",
+    "slug": "22-arts-sports",
+    "path": "sections/22-arts-sports.md",
+    "part": "계열별 전형 분석과 준비",
+    "group": "예체능계열",
+    "pdf_pages": [
+      581,
+      636
+    ],
+    "printed_pages": [
+      575,
+      630
+    ]
+  },
+  {
+    "id": "appendix-01",
+    "title": "각종 교육통계 참고자료",
+    "slug": "23-education-statistics",
+    "path": "sections/23-education-statistics.md",
+    "part": "부록",
+    "group": "부록",
+    "pdf_pages": [
+      637,
+      639
+    ],
+    "printed_pages": [
+      631,
+      633
+    ]
+  },
+  {
+    "id": "appendix-02",
+    "title": "전국 시·도 교육청 진로진학 센터 안내",
+    "slug": "24-career-centers",
+    "path": "sections/24-career-centers.md",
+    "part": "부록",
+    "group": "부록",
+    "pdf_pages": [
+      640,
+      640
+    ],
+    "printed_pages": [
+      634,
+      634
+    ]
+  },
+  {
+    "id": "appendix-03",
+    "title": "전국 대학 일람",
+    "slug": "25-university-directory",
+    "path": "sections/25-university-directory.md",
+    "part": "부록",
+    "group": "부록",
+    "pdf_pages": [
+      641,
+      654
+    ],
+    "printed_pages": [
+      635,
+      648
+    ]
+  }
+]

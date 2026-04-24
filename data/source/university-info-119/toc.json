@@ -1,0 +1,181 @@
+[
+  {
+    "id": "front-matter",
+    "title": "발간사 · 일러두기 · 목차",
+    "file": "sections/00-front-matter.md",
+    "children": []
+  },
+  {
+    "id": "major",
+    "title": "2027학년도 대입 주요 사항",
+    "children": [
+      {
+        "id": "major-01",
+        "title": "대입전형 일정",
+        "file": "sections/01-major-schedule.md"
+      },
+      {
+        "id": "major-02",
+        "title": "대입전형 시행계획 주요특징",
+        "file": "sections/02-major-plan-features.md"
+      },
+      {
+        "id": "major-03",
+        "title": "2027학년도 대입전형 특징 요약",
+        "file": "sections/03-major-summary.md"
+      },
+      {
+        "id": "major-04",
+        "title": "전년대비 변경사항",
+        "file": "sections/04-major-changes.md"
+      }
+    ]
+  },
+  {
+    "id": "regular-early",
+    "title": "1부 수시모집",
+    "children": [
+      {
+        "id": "regular-01",
+        "title": "학생부교과전형",
+        "file": "sections/05-student-record-subject.md"
+      },
+      {
+        "id": "regular-02",
+        "title": "학생부종합전형",
+        "file": "sections/06-student-record-comprehensive.md"
+      },
+      {
+        "id": "regular-03",
+        "title": "논술전형",
+        "file": "sections/07-essay.md"
+      }
+    ]
+  },
+  {
+    "id": "regular-late",
+    "title": "2부 정시모집",
+    "children": [
+      {
+        "id": "regular-04",
+        "title": "수능전형(예체능 제외)",
+        "file": "sections/08-suneung.md"
+      }
+    ]
+  },
+  {
+    "id": "special",
+    "title": "특별전형",
+    "children": [
+      {
+        "id": "special-opportunity",
+        "title": "기회균형 특별전형",
+        "children": [
+          {
+            "id": "special-01",
+            "title": "기회균형 선발 대상자(통합)전형",
+            "file": "sections/09-opportunity-integrated.md"
+          },
+          {
+            "id": "special-02",
+            "title": "농어촌학생 특별전형",
+            "file": "sections/10-rural.md"
+          },
+          {
+            "id": "special-03",
+            "title": "기초생활수급자·차상위계층·한부모가족지원대상자 특별전형",
+            "file": "sections/11-low-income.md"
+          },
+          {
+            "id": "special-04",
+            "title": "특성화고교졸업자 특별전형",
+            "file": "sections/12-vocational.md"
+          },
+          {
+            "id": "special-05",
+            "title": "장애인 등 대상자 특별전형",
+            "file": "sections/13-disability.md"
+          }
+        ]
+      },
+      {
+        "id": "special-06",
+        "title": "지역인재 특별전형",
+        "file": "sections/14-regional.md"
+      }
+    ]
+  },
+  {
+    "id": "analysis",
+    "title": "계열별 전형 분석과 준비",
+    "children": [
+      {
+        "id": "analysis-medical",
+        "title": "의치약한수계열",
+        "children": [
+          {
+            "id": "analysis-01",
+            "title": "2027학년도 의치약한수계열 개요",
+            "file": "sections/15-medical-overview.md"
+          },
+          {
+            "id": "analysis-02",
+            "title": "2027학년도 의치약한수계열 특징",
+            "file": "sections/16-medical-features.md"
+          },
+          {
+            "id": "analysis-03",
+            "title": "의학계열 2024~2026학년도 입학정보 분석 현황",
+            "file": "sections/17-medical-analysis.md"
+          }
+        ]
+      },
+      {
+        "id": "analysis-04",
+        "title": "교육계열(초등교육)",
+        "file": "sections/18-education.md"
+      },
+      {
+        "id": "analysis-05",
+        "title": "이공계 특성화 대학",
+        "file": "sections/19-science-specialized.md"
+      },
+      {
+        "id": "analysis-06",
+        "title": "전공자율선택제",
+        "file": "sections/20-major-free-choice.md"
+      },
+      {
+        "id": "analysis-07",
+        "title": "계약학과·첨단학과",
+        "file": "sections/21-contract-cutting-edge.md"
+      },
+      {
+        "id": "analysis-08",
+        "title": "예체능계열(실기·실적전형 제외)",
+        "file": "sections/22-arts-sports.md"
+      }
+    ]
+  },
+  {
+    "id": "appendix",
+    "title": "부록",
+    "children": [
+      {
+        "id": "appendix-01",
+        "title": "각종 교육통계 참고자료",
+        "file": "sections/23-education-statistics.md"
+      },
+      {
+        "id": "appendix-02",
+        "title": "전국 시·도 교육청 진로진학 센터 안내",
+        "file": "sections/24-career-centers.md"
+      },
+      {
+        "id": "appendix-03",
+        "title": "전국 대학 일람",
+        "file": "sections/25-university-directory.md"
+      }
+    ]
+  }
+]

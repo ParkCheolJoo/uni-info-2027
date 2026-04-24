@@ -1,0 +1,1213 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<title>2027학년도 대입정보</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --bg: #ffffff;
+    --panel: #ef6342;
+    --ink: #ffffff;
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.88);
+    --text-tertiary: rgba(255, 255, 255, 0.74);
+    --font: "Noto Sans KR", "Pretendard Variable", Pretendard, "Avenir Next", sans-serif;
+    --year-weight: 300;
+    --label-weight: 100;
+    --margin-x: 8vw;
+    --margin-y: 10vh;
+    --detail-pad-top: clamp(24px, 3.4vw, 52px);
+    --detail-pad-side: clamp(36px, 5vw, 80px);
+    --detail-pad-bottom: clamp(36px, 5vh, 60px);
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--bg);
+    font-family: var(--font);
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+  }
+
+  .stage {
+    position: relative;
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 6vmin;
+    background:
+      radial-gradient(120% 60% at 50% 120%, rgba(0, 0, 0, 0.04), transparent 60%),
+      #ffffff;
+    overflow: hidden;
+  }
+
+  .panel {
+    position: relative;
+    background: var(--panel);
+    display: grid;
+    place-items: center;
+    border-radius: 0;
+    width: min(72vw, 720px);
+    aspect-ratio: 4 / 3;
+    box-shadow:
+      0 -18px 26px -10px rgba(0, 0, 0, 0.09),
+      0 -40px 60px -28px rgba(201, 64, 40, 0.14),
+      0 16px 26px -10px rgba(201, 64, 40, 0.22),
+      0 36px 52px -15px rgba(0, 0, 0, 0.18),
+      0 75px 100px -30px rgba(0, 0, 0, 0.2),
+      0 120px 150px -60px rgba(0, 0, 0, 0.14);
+    overflow: visible;
+    isolation: isolate;
+    animation: float 7s ease-in-out infinite;
+    transition:
+      width 900ms cubic-bezier(.7, 0, .2, 1),
+      height 900ms cubic-bezier(.7, 0, .2, 1),
+      aspect-ratio 900ms cubic-bezier(.7, 0, .2, 1);
+  }
+
+  body.expanded .panel {
+    animation: none;
+    aspect-ratio: auto;
+    width: calc(100vw - var(--margin-x) * 2);
+    height: calc(100vh - var(--margin-y) * 2);
+  }
+
+  .hero {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(82%, 560px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(18px, 3vh, 32px);
+    z-index: 2;
+    transition: opacity 350ms ease, transform 500ms cubic-bezier(.7, 0, .2, 1);
+  }
+
+  body.expanded .hero {
+    pointer-events: none;
+  }
+
+  body.expanded .hero .search-zone {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 400ms ease, transform 500ms cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .title {
+    position: relative;
+    z-index: 3;
+    color: var(--ink);
+    font-family: var(--font);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    font-size: clamp(28px, 5vw, 64px);
+    font-weight: var(--year-weight);
+    transition: font-size 900ms cubic-bezier(.7, 0, .2, 1);
+  }
+
+  .title-button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 280ms cubic-bezier(.22, 1, .36, 1), opacity 180ms ease;
+    will-change: transform;
+  }
+
+  .title-button:hover {
+    transform: translateX(4px) translateY(-1px);
+  }
+
+  .title .year,
+  .title .label { display: block; }
+
+  .title .year {
+    font-weight: var(--year-weight);
+    letter-spacing: -0.02em;
+  }
+
+  .title .label {
+    font-weight: var(--label-weight);
+    margin-top: 0.15em;
+  }
+
+  .title .sep { display: none; }
+
+  body.expanded .title {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 250ms ease;
+  }
+
+  .search-zone {
+    position: relative;
+    width: 100%;
+    z-index: 4;
+    transition: opacity 350ms ease, transform 500ms cubic-bezier(.7, 0, .2, 1);
+  }
+
+  .search-wrap { position: relative; }
+
+  .search-input {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-bottom: 0;
+    border-radius: 0;
+    padding: 18px 22px;
+    outline: none;
+    color: #1a1a1a;
+    background: #ffffff;
+    font-family: var(--font);
+    font-size: clamp(15px, 1.5vw, 18px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    text-align: center;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+  }
+
+  .search-input::placeholder {
+    color: #9a9a9a;
+    font-weight: 300;
+    transition: opacity 180ms ease;
+  }
+
+  .search-input:focus::placeholder { opacity: 0; }
+
+  .search-input:focus {
+    border-color: #fff;
+  }
+
+  .suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: grid;
+    gap: 0;
+    max-height: 118px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+    background: #fff;
+    box-shadow: none;
+    transform-origin: top center;
+    opacity: 0;
+    transform: translateY(-2px) scale(0.995);
+    pointer-events: none;
+    transition:
+      opacity 380ms ease,
+      transform 520ms cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .suggestions.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .suggestions.hidden { display: none; }
+
+  .suggestion {
+    opacity: 0;
+    transform: translateY(-4px);
+    transition:
+      opacity 340ms ease,
+      transform 420ms cubic-bezier(.22, 1, .36, 1),
+      background 160ms ease;
+  }
+
+  .suggestions.open .suggestion {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 120ms;
+  }
+
+  .suggestion {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 12px 22px;
+    color: #1a1a1a;
+    text-align: left;
+    cursor: pointer;
+    font-family: var(--font);
+  }
+
+  .suggestion:hover,
+  .suggestion.active {
+    background: #fff4f0;
+  }
+
+  .suggestion strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .suggestion span {
+    display: block;
+    margin-top: 2px;
+    color: #888;
+    font-size: 12px;
+    font-weight: 300;
+  }
+
+  .hidden { display: none !important; }
+
+  .detail {
+    position: absolute;
+    inset: 0;
+    padding:
+      var(--detail-pad-top)
+      var(--detail-pad-side)
+      var(--detail-pad-bottom);
+    color: var(--ink);
+    font-family: var(--font);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(16px);
+    transition: opacity 500ms ease, transform 600ms cubic-bezier(.7, 0, .2, 1);
+    overflow-y: auto;
+  }
+
+  .detail,
+  .suggestions,
+  .tabs {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.42) transparent;
+  }
+
+  .detail::-webkit-scrollbar,
+  .suggestions::-webkit-scrollbar,
+  .tabs::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .detail::-webkit-scrollbar-track,
+  .suggestions::-webkit-scrollbar-track,
+  .tabs::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .detail::-webkit-scrollbar-thumb,
+  .suggestions::-webkit-scrollbar-thumb,
+  .tabs::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.34);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+
+  .detail::-webkit-scrollbar-thumb:hover,
+  .suggestions::-webkit-scrollbar-thumb:hover,
+  .tabs::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.56);
+    background-clip: padding-box;
+  }
+
+  body.expanded .detail {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition-delay: 550ms;
+  }
+
+  .detail-head {
+    display: grid;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.28);
+  }
+
+  .detail-head .title-row { display: block; }
+
+  .detail-head h2 {
+    margin: 0;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .detail-head .title-link {
+    display: inline-block;
+    color: var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 280ms cubic-bezier(.22, 1, .36, 1), opacity 180ms ease;
+    will-change: transform;
+  }
+
+  .detail-head .title-link:hover {
+    transform: translateX(4px) translateY(-1px);
+  }
+
+  .detail-head .title-link:hover h2,
+  .detail-head .title-link:focus-visible h2 {
+    opacity: 0.92;
+    transform: translateX(1px);
+  }
+
+  .detail-head .title-link h2 {
+    transition: transform 280ms cubic-bezier(.22, 1, .36, 1), opacity 180ms ease;
+  }
+
+  .detail-head .meta {
+    color: var(--text-secondary);
+    font-size: clamp(12px, 1vw, 14px);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+  }
+
+  .detail-head .meta a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.38);
+    padding-bottom: 1px;
+    cursor: pointer;
+    transition: color 160ms ease, border-color 160ms ease;
+  }
+
+  .detail-head .meta a:hover {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.82);
+  }
+
+  .admissions { display: grid; gap: 0; }
+
+  .admission {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: clamp(16px, 2.5vw, 36px);
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    min-width: 0;
+  }
+
+  .admission:last-child { border-bottom: 0; }
+
+  .admission-type {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-top: 6px;
+  }
+
+  .admission-main h3 {
+    margin: 0 0 14px;
+    color: var(--text-primary);
+    font-size: clamp(18px, 1.6vw, 22px);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    min-width: 0;
+  }
+
+  .warning {
+    display: inline-block;
+    margin: 0 0 12px;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .facts-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
+  .facts-table td {
+    width: 1%;
+    padding: 12px 14px;
+    border-right: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(0, 0, 0, 0.06);
+    vertical-align: top;
+    min-width: 0;
+  }
+
+  .facts-table td:last-child {
+    border-right: 0;
+  }
+
+  .fact {
+    min-width: 0;
+  }
+
+  .fact small {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--text-tertiary);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .fact div {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0.01);
+  }
+
+  .stack-list {
+    display: grid;
+    gap: 8px;
+  }
+
+  .stack-item {
+    display: block;
+    line-height: 1.5;
+  }
+
+  .stack-item strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-top: 4px;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    border-right: 1px solid rgba(255, 255, 255, 0.14);
+    text-align: left;
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .compare-table th:last-child,
+  .compare-table td:last-child {
+    border-right: 0;
+  }
+
+  .compare-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .compare-table thead th {
+    color: var(--text-tertiary);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .compare-table tbody td {
+    color: var(--text-primary);
+    font-weight: 400;
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .info-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-top: 4px;
+  }
+
+  .info-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    border-right: 1px solid rgba(255, 255, 255, 0.14);
+    vertical-align: top;
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .info-table tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .info-table td:last-child {
+    border-right: 0;
+  }
+
+  .info-table .label-cell {
+    width: 34%;
+    color: var(--text-primary);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .info-table .value-cell {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.45;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+  }
+
+  .note {
+    margin-top: 12px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .empty-detail {
+    margin-top: 8px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .back {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 30;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: #ffffff;
+    font-family: var(--font);
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(0);
+    transition: opacity 400ms ease, transform 280ms cubic-bezier(.22, 1, .36, 1), color 180ms ease;
+  }
+
+  body.expanded .back {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .back:hover {
+    color: rgba(255, 255, 255, 0.82);
+    transform: translateX(4px) translateY(-1px);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel { animation: none; }
+    .panel, .title, .detail, .back, .search-zone { transition-duration: 200ms; }
+  }
+
+  @media (max-width: 640px) {
+    :root {
+      --margin-x: 12px;
+      --margin-y: 24px;
+      --detail-pad-top: 16px;
+      --detail-pad-side: 16px;
+      --detail-pad-bottom: 28px;
+    }
+
+    body.expanded .panel {
+      width: min(100%, calc(100vw - var(--margin-x) * 2));
+      height: calc(100vh - var(--margin-y) * 2);
+    }
+
+    .detail {
+      padding: var(--detail-pad-top) var(--detail-pad-side) var(--detail-pad-bottom);
+      min-width: 0;
+    }
+
+    .back {
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+    }
+
+    .detail-head {
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .detail-head h2 {
+      font-size: clamp(22px, 6.8vw, 30px);
+      line-height: 1.1;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    .detail-head .meta {
+      font-size: 11px;
+      letter-spacing: 0.05em;
+    }
+
+    .admission {
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 18px 0;
+      min-width: 0;
+    }
+
+    .admission-type {
+      padding-top: 0;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+    }
+
+    .admission-main h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+
+    .facts-table,
+    .facts-table tbody,
+    .facts-table tr,
+    .facts-table td { display: block; width: 100%; }
+    .facts-table td {
+      padding: 10px 12px;
+      border-right: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .facts-table tr:last-child td:last-child { border-bottom: 0; }
+
+    .fact small { font-size: 10px; letter-spacing: 0.06em; }
+    .fact div { font-size: 13px; }
+    .compare-table th,
+    .compare-table td,
+    .info-table td { padding: 10px 11px; font-size: 13px; }
+    .info-table .label-cell { font-size: 10px; }
+    .info-table .value-cell { font-size: 13px; }
+    .note { font-size: 12px; line-height: 1.55; }
+
+    .title {
+      font-size: clamp(32px, 11vw, 58px);
+    }
+
+    .hero {
+      width: min(90%, 420px);
+      gap: 20px;
+    }
+
+    .search-input {
+      font-size: 15px;
+    }
+
+    .suggestions {
+      max-height: 112px;
+    }
+  }
+
+  @media (max-height: 560px) and (min-width: 641px) {
+    :root {
+      --detail-pad-top: 24px;
+      --detail-pad-side: 36px;
+      --detail-pad-bottom: 28px;
+    }
+
+    .detail { padding: var(--detail-pad-top) var(--detail-pad-side) var(--detail-pad-bottom); }
+    .back {
+      top: 12px;
+      left: 12px;
+    }
+    .detail-head { margin-bottom: 10px; padding-bottom: 8px; }
+    .detail-head h2 { font-size: clamp(22px, 3vw, 32px); }
+    .admission { padding: 14px 0; }
+  }
+</style>
+</head>
+<body>
+  <main class="stage">
+    <section class="panel" id="panel" aria-label="2027 대입 정보">
+      <div class="hero">
+        <button class="title title-button" id="titleButton" type="button" aria-label="2027 대입 정보 보기">
+          <span class="year">2027</span><span class="sep">·</span><span class="label">대입 정보</span>
+        </button>
+        <div class="search-zone" aria-label="대학 검색">
+          <div class="search-wrap">
+            <input id="searchInput" class="search-input" type="search" autocomplete="off" placeholder="대학명을 입력하세요" />
+            <div id="suggestions" class="suggestions hidden"></div>
+          </div>
+        </div>
+      </div>
+      <div class="detail" id="detail" aria-hidden="true"></div>
+      <button class="back" id="back" aria-label="뒤로">←</button>
+    </section>
+  </main>
+
+  <script src="./data/derived/university-info-119/universities.js"></script>
+  <script>
+  (function () {
+    const payload = window.UNIVERSITY_DATA || { universities: [] };
+    const universities = payload.universities || [];
+    const overviewDetail = {
+      title: "2027 대입 정보",
+      meta: "기본 개요 · 주요 변경 사항 · 일정",
+      sections: [
+        {
+          label: "기본 개요",
+          title: "2027학년도 대입 기본 흐름",
+          facts: [
+            ["전체 모집인원", "345,717명"],
+            ["수시 모집", "277,583명 (80.3%)"],
+            ["정시 모집", "68,134명 (19.7%)"],
+            ["수시 원서접수", "2026.9.7~11"],
+            ["정시 원서접수", "2027.1.4~7"],
+          ],
+          note: "전체 모집인원은 전년도보다 538명 증가했고, 수시는 1,735명 증가, 정시는 1,197명 감소했습니다. 수시 일정과 정시 일정은 전년도와 대체로 비슷하며, 정시 미등록 충원 등록 마감은 2027년 2월 18일 22시입니다.",
+        },
+        {
+          label: "주요 변경 사항",
+          title: "올해 읽어야 할 큰 변화",
+          comparison: [
+            ["전체 모집인원", "345,717명", "345,179명"],
+            ["수시 모집", "277,583명 (80.3%)", "275,848명 (79.9%)"],
+            ["정시 모집", "68,134명 (19.7%)", "69,331명 (20.1%)"],
+            ["수시 학생부교과", "156,403명", "155,495명"],
+            ["수시 학생부종합", "81,931명", "81,373명"],
+            ["정시 수능위주", "63,195명", "63,902명"],
+          ],
+          note: "수시에서는 학생부위주 전형이 중심이고, 정시에서는 수능위주 선발이 절대적입니다. 수도권은 정시 비중이 상대적으로 높고 비수도권은 수시 비중이 높아, 목표 대학의 권역에 따라 지원 전략을 다르게 잡아야 합니다. 전년대비 변경 사항은 대학별로 전형명, 모집인원, 평가요소, 교과 반영, 수능 반영, 학폭 반영 방식 변화가 반복적으로 나타납니다.",
+        },
+        {
+          label: "일정",
+          title: "2027학년도 수시·정시 주요 일정",
+          facts: [
+            ["수시 원서접수", "2026.9.7~11"],
+            ["수시 합격 발표 마감", "2026.12.18"],
+            ["수시 등록", "2026.12.21~23"],
+            ["정시 원서접수", "2027.1.4~7"],
+            ["정시 합격 발표 마감", "2027.2.5"],
+            ["정시 등록", "2027.2.10~12"],
+            ["추가모집", "2027.2.19~26"],
+            ["추가모집 등록 마감", "2027.2.26 22시"],
+          ],
+          note: "수시 미등록 충원 등록 마감은 2026년 12월 30일 22시, 정시 미등록 충원 등록 마감은 2027년 2월 18일 22시입니다. 수능 시행일은 2026년 11월 19일, 수능 성적 통지일은 2026년 12월 11일입니다.",
+        },
+      ],
+    };
+    const state = {
+      query: "",
+      selected: null,
+      activeIndex: -1,
+    };
+
+    const searchInput = document.getElementById("searchInput");
+    const titleButton = document.getElementById("titleButton");
+    const suggestions = document.getElementById("suggestions");
+    const detail = document.getElementById("detail");
+    const panel = document.getElementById("panel");
+    const back = document.getElementById("back");
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function normalize(value) {
+      return String(value || "").replace(/\s+/g, "").toLowerCase();
+    }
+
+    function admissionsOf(university) {
+      return university?.structured_admissions || [];
+    }
+
+    function hasReliableValue(value) {
+      return Boolean(String(value || "").trim());
+    }
+
+    const ambiguous = new Set([
+      "적용",
+      "있음",
+      "적용 가능",
+      "일부 모집단위 적용",
+      "의·약 계열 일부 적용",
+      "의/약 일부 적용",
+      "의/치/약 일부 적용",
+      "의/치/약/간 일부 적용",
+      "의/치/약/수 일부 적용",
+      "의예 등 일부 모집단위 적용",
+      "치의예 계열 기준 적용",
+      "약학 일부 적용",
+      "간호 일부 적용",
+    ]);
+
+    function needsReview(value) {
+      const text = String(value || "").trim();
+      return ambiguous.has(text) || /일부 적용$/.test(text) || text.includes("확인 필요");
+    }
+
+    function getMatches() {
+      const query = normalize(state.query);
+      if (!query) return [];
+
+      return universities
+        .filter(university => {
+          const terms = [university.name, university.base_name, university.campus, ...(university.search_terms || [])];
+          return terms.some(term => normalize(term).includes(query));
+        })
+        .sort((a, b) => {
+          const aName = normalize(a.name);
+          const bName = normalize(b.name);
+          const aStarts = aName.startsWith(query) ? 0 : 1;
+          const bStarts = bName.startsWith(query) ? 0 : 1;
+          return aStarts - bStarts || a.name.localeCompare(b.name, "ko");
+        });
+    }
+
+    function selectUniversity(university) {
+      state.selected = university;
+      state.query = university.name;
+      state.activeIndex = -1;
+      searchInput.value = university.name;
+      renderSuggestions([]);
+      renderDetail(university);
+      expand();
+    }
+
+    function renderSuggestions(matches = getMatches()) {
+      if (!matches.length) {
+        suggestions.classList.remove("open");
+        setTimeout(() => {
+          if (!suggestions.classList.contains("open")) {
+            suggestions.innerHTML = "";
+            suggestions.classList.add("hidden");
+          }
+        }, 420);
+        return;
+      }
+
+      suggestions.classList.remove("hidden");
+      void suggestions.offsetWidth;
+      suggestions.innerHTML = matches.map((university, index) => {
+        return `
+          <button class="suggestion ${index === state.activeIndex ? "active" : ""}" type="button" data-index="${index}">
+            <strong>${escapeHtml(university.name)}</strong>
+          </button>
+        `;
+      }).join("");
+
+      suggestions.querySelectorAll("[data-index]").forEach(button => {
+        button.addEventListener("mousedown", event => {
+          event.preventDefault();
+          selectUniversity(matches[Number(button.dataset.index)]);
+        });
+      });
+
+      requestAnimationFrame(() => suggestions.classList.add("open"));
+    }
+
+    function renderDetail(university) {
+      const admissions = admissionsOf(university);
+
+      if (!admissions.length) {
+        detail.innerHTML = `
+          <div class="detail-head">
+            <div class="title-row">
+              ${renderUniversityTitle(university)}
+            </div>
+          </div>
+          <div class="empty-detail">이 대학은 확실하게 정리된 전형 정보가 없어 표시하지 않았습니다.</div>
+        `;
+        return;
+      }
+
+      detail.innerHTML = `
+        <div class="detail-head">
+          <div class="title-row">
+            ${renderUniversityTitle(university)}
+          </div>
+        </div>
+        <div class="admissions">
+          ${admissions.map(entry => renderAdmission(entry)).join("")}
+        </div>
+      `;
+
+      detail.querySelectorAll("[data-external-link]").forEach(link => {
+        link.addEventListener("click", event => {
+          event.preventDefault();
+          event.stopPropagation();
+          window.open(link.getAttribute("href"), "_blank", "noopener,noreferrer");
+        });
+      });
+    }
+
+    function renderUniversityTitle(university) {
+      const linkUrl = university.admission_url || university.website;
+      const title = escapeHtml(university.name);
+      if (!linkUrl) return `<h2>${title}</h2>`;
+      return `<a class="title-link" href="${escapeHtml(linkUrl)}" target="_blank" rel="noreferrer noopener" data-external-link="true"><h2>${title}</h2></a>`;
+    }
+
+    function renderOverviewDetail() {
+      detail.innerHTML = `
+        <div class="detail-head">
+          <div class="title-row">
+            <h2>${escapeHtml(overviewDetail.title)}</h2>
+          </div>
+          <div class="meta">${escapeHtml(overviewDetail.meta)}</div>
+        </div>
+        <div class="admissions">
+          ${overviewDetail.sections.map(section => `
+            <article class="admission">
+              <div class="admission-type">${escapeHtml(section.label)}</div>
+              <div class="admission-main">
+                <h3>${escapeHtml(section.title)}</h3>
+                ${section.comparison ? `
+                  <table class="compare-table">
+                    <thead>
+                      <tr>
+                        <th>항목</th>
+                        <th>2027</th>
+                        <th>2026</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${section.comparison.map(([label, next, prev]) => `
+                        <tr>
+                          <td>${escapeHtml(label)}</td>
+                          <td>${escapeHtml(next)}</td>
+                          <td>${escapeHtml(prev)}</td>
+                        </tr>
+                      `).join("")}
+                    </tbody>
+                  </table>
+                ` : `
+                  <table class="info-table">
+                    <tbody>
+                      ${section.facts.map(([label, value]) => `
+                        <tr>
+                          <td class="label-cell">${escapeHtml(label)}</td>
+                          <td class="value-cell">${escapeHtml(value)}</td>
+                        </tr>
+                      `).join("")}
+                    </tbody>
+                  </table>
+                `}
+                <div class="note">${escapeHtml(section.note)}</div>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function selectOverview() {
+      state.selected = "__overview__";
+      state.activeIndex = -1;
+      renderSuggestions([]);
+      renderOverviewDetail();
+      expand();
+    }
+
+    function renderAdmission(entry) {
+      const facts = [
+        ["모집인원", entry.capacity],
+        ["전형방법", entry.method],
+        ["수능최저", entry.csat_minimum],
+      ].filter(([, value]) => hasReliableValue(value));
+
+      return `
+        <article class="admission">
+          <div class="admission-type">${escapeHtml(entry.admission_type || "전형")}</div>
+          <div class="admission-main">
+            <h3>${escapeHtml(entry.track_name || "전형명 미표기")}</h3>
+            ${needsReview(entry.csat_minimum) ? `<div class="warning">수능최저 확인 필요</div>` : ""}
+            <table class="facts-table">
+              <tbody>
+                <tr>
+                  ${facts.map(([label, value]) => `
+                    <td>
+                      <div class="fact">
+                        <small>${escapeHtml(label)}</small>
+                        <div>${renderFactValue(label, value)}</div>
+                      </div>
+                    </td>
+                  `).join("")}
+                </tr>
+              </tbody>
+            </table>
+            ${entry.notes ? `<div class="note">${escapeHtml(entry.notes)}</div>` : ""}
+          </div>
+        </article>
+      `;
+    }
+
+    function renderFactValue(label, value) {
+      if (label !== "수능최저") {
+        return escapeHtml(value);
+      }
+
+      const text = String(value).trim();
+      const parts = [];
+      let current = "";
+
+      for (const chunk of text.split(/\s*\/\s*/g)) {
+        const part = chunk.trim();
+        if (!part) continue;
+
+        const startsNewItem = /^[^:]{1,20}:\s*.+$/.test(part);
+        if (!current) {
+          current = part;
+          continue;
+        }
+
+        if (startsNewItem) {
+          parts.push(current);
+          current = part;
+          continue;
+        }
+
+        current += ` / ${part}`;
+      }
+
+      if (current) {
+        parts.push(current);
+      }
+
+      if (parts.length <= 1) {
+        return escapeHtml(text);
+      }
+
+      return `
+        <div class="stack-list">
+          ${parts.map(part => {
+            const matched = part.match(/^([^:]+):\s*(.+)$/);
+            if (!matched) {
+              return `<span class="stack-item">${escapeHtml(part)}</span>`;
+            }
+            return `<span class="stack-item"><strong>${escapeHtml(matched[1])}:</strong> ${escapeHtml(matched[2])}</span>`;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function expand() {
+      document.body.classList.add("expanded");
+      panel.setAttribute("aria-expanded", "true");
+      detail.setAttribute("aria-hidden", "false");
+    }
+
+    function collapse() {
+      document.body.classList.remove("expanded");
+      panel.setAttribute("aria-expanded", "false");
+      detail.setAttribute("aria-hidden", "true");
+      state.selected = null;
+      state.query = "";
+      searchInput.value = "";
+      renderSuggestions([]);
+      setTimeout(() => searchInput.focus(), 700);
+    }
+
+    searchInput.addEventListener("input", event => {
+      state.query = event.target.value;
+      state.selected = null;
+      state.activeIndex = -1;
+      renderSuggestions(getMatches());
+    });
+
+    searchInput.addEventListener("keydown", event => {
+      const matches = getMatches();
+      if (!matches.length) return;
+
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        state.activeIndex = Math.min(state.activeIndex + 1, matches.length - 1);
+        renderSuggestions(matches);
+      }
+
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        state.activeIndex = Math.max(state.activeIndex - 1, 0);
+        renderSuggestions(matches);
+      }
+
+      if (event.key === "Enter") {
+        if (event.isComposing || event.keyCode === 229) return;
+        event.preventDefault();
+        const index = state.activeIndex >= 0 ? state.activeIndex : 0;
+        selectUniversity(matches[index]);
+      }
+
+      if (event.key === "Escape") {
+        state.activeIndex = -1;
+        renderSuggestions([]);
+      }
+    });
+
+    searchInput.addEventListener("keyup", event => {
+      if (event.key !== "Enter" || event.isComposing || event.keyCode === 229) return;
+      window.setTimeout(() => {
+        const matches = getMatches();
+        if (!state.selected && matches.length) {
+          selectUniversity(matches[0]);
+        }
+      }, 0);
+    });
+
+    document.addEventListener("click", event => {
+      if (!event.target.closest(".search-wrap")) {
+        renderSuggestions([]);
+      }
+    });
+
+    titleButton.addEventListener("click", () => {
+      if (document.body.classList.contains("expanded")) return;
+      selectOverview();
+    });
+
+    back.addEventListener("click", collapse);
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && document.body.classList.contains("expanded")) {
+        collapse();
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
