@@ -1542,6 +1542,51 @@
             "page": 99
           }
         ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "농어촌학생",
+        "capacity": "4",
+        "method": "학생부80+면접20",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "rural",
+            "section_title": "농어촌학생 특별전형",
+            "page": 271
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "기초생활수급권자 및 차상위계층",
+        "capacity": "4",
+        "method": "학생부80+면접20",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "low-income",
+            "section_title": "기초생활수급자·차상위계층·한부모가족지원대상자 특별전형",
+            "page": 289
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "특수교육대상자",
+        "capacity": "20",
+        "method": "학생부80+면접20",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "disability",
+            "section_title": "장애인 등 대상자 특별전형",
+            "page": 313
+          }
+        ]
       }
     ],
     "evidence_count": 8,
@@ -13824,6 +13869,51 @@
             "page": 100
           }
         ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "농어촌출신자",
+        "capacity": "1",
+        "method": "학생부100",
+        "csat_minimum": "없음",
+        "notes": "유형 I만 인정",
+        "source_refs": [
+          {
+            "section_id": "rural",
+            "section_title": "농어촌학생 특별전형",
+            "page": 278
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "기초생활수급자 및 차상위계층",
+        "capacity": "3",
+        "method": "학생부100",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "low-income",
+            "section_title": "기초생활수급자·차상위계층·한부모가족지원대상자 특별전형",
+            "page": 296
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "특성화고교졸업자",
+        "capacity": "1",
+        "method": "학생부70+면접30",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "vocational",
+            "section_title": "특성화고교졸업자 특별전형",
+            "page": 303
+          }
+        ]
       }
     ],
     "evidence_count": 9,
@@ -14555,6 +14645,51 @@
             "page": 100
           }
         ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "농어촌학생",
+        "capacity": "3",
+        "method": "학생부100",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "rural",
+            "section_title": "농어촌학생 특별전형",
+            "page": 278
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "기초생활수급자·차상위·한부모",
+        "capacity": "5",
+        "method": "학생부100",
+        "csat_minimum": "없음",
+        "notes": "기초생활수급자, 차상위계층, 한부모가족지원대상자 기준",
+        "source_refs": [
+          {
+            "section_id": "low-income",
+            "section_title": "기초생활수급자·차상위계층·한부모가족지원대상자 특별전형",
+            "page": 296
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "장애인등 대상자",
+        "capacity": "18",
+        "method": "학생부60+면접40",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "disability",
+            "section_title": "장애인 등 대상자 특별전형",
+            "page": 319
+          }
+        ]
       }
     ],
     "evidence_count": 8,
@@ -15094,6 +15229,36 @@
             "section_id": "regular-02",
             "section_title": "학생부종합전형",
             "page": 166
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "농어촌학생",
+        "capacity": "6",
+        "method": "학생부100",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "rural",
+            "section_title": "농어촌학생 특별전형",
+            "page": 279
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "기회균형선발",
+        "capacity": "15",
+        "method": "학생부100",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "low-income",
+            "section_title": "기초생활수급자·차상위계층·한부모가족지원대상자 특별전형",
+            "page": 296
           }
         ]
       },
@@ -23351,6 +23516,36 @@
             "page": 168
           }
         ]
+      },
+      {
+        "admission_type": "학생부종합",
+        "track_name": "기초생활수급자 및 차상위계층",
+        "capacity": "16",
+        "method": "1단계(3배수): 서류100 / 2단계: 1단계70+면접30",
+        "csat_minimum": "없음",
+        "notes": "종합 특별전형",
+        "source_refs": [
+          {
+            "section_id": "low-income",
+            "section_title": "기초생활수급자·차상위계층·한부모가족지원대상자 특별전형",
+            "page": 296
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부종합",
+        "track_name": "특수교육대상자",
+        "capacity": "20",
+        "method": "1단계(3배수): 서류100 / 2단계: 1단계70+면접30",
+        "csat_minimum": "없음",
+        "notes": "종합 특별전형",
+        "source_refs": [
+          {
+            "section_id": "disability",
+            "section_title": "장애인 등 대상자 특별전형",
+            "page": 319
+          }
+        ]
       }
     ],
     "evidence_count": 8,
@@ -23462,6 +23657,56 @@
             "section_id": "arts-sports",
             "section_title": "예체능계열",
             "page": 315
+          }
+        ]
+      },
+      {
+        "admission_type": "수능",
+        "track_name": "일반",
+        "capacity": "38",
+        "method": "수능100",
+        "csat_minimum": "없음",
+        "notes": "융합예술학부 유형2 기준",
+        "source_refs": [
+          {
+            "section_id": "major-free-choice",
+            "section_title": "전공자율선택제",
+            "page": 552
+          },
+          {
+            "section_id": "suneung",
+            "section_title": "수능전형(예체능 제외)",
+            "page": 231
+          }
+        ]
+      },
+      {
+        "admission_type": "수능",
+        "track_name": "기회균형(농어촌학생)",
+        "capacity": "3",
+        "method": "수능100",
+        "csat_minimum": "없음",
+        "notes": "나군 기준",
+        "source_refs": [
+          {
+            "section_id": "rural",
+            "section_title": "농어촌학생 특별전형",
+            "page": 288
+          }
+        ]
+      },
+      {
+        "admission_type": "수능",
+        "track_name": "기회균형(장애인 등 대상자)",
+        "capacity": "5",
+        "method": "수능100",
+        "csat_minimum": "없음",
+        "notes": "나군 기준",
+        "source_refs": [
+          {
+            "section_id": "disability",
+            "section_title": "장애인 등 대상자 특별전형",
+            "page": 325
           }
         ]
       }
@@ -24789,6 +25034,66 @@
             "section_id": "regular-01",
             "section_title": "학생부교과전형",
             "page": 101
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "고른기회",
+        "capacity": "4",
+        "method": "학생부70+면접30",
+        "csat_minimum": "없음",
+        "notes": "농어촌, 기초생활수급자·차상위, 만학도 포함",
+        "source_refs": [
+          {
+            "section_id": "opportunity-integrated",
+            "section_title": "기회균형 선발 대상자(통합)전형",
+            "page": 266
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "농어촌고교출신자",
+        "capacity": "5",
+        "method": "학생부70+면접30",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "rural",
+            "section_title": "농어촌학생 특별전형",
+            "page": 279
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "기초생활수급자 및 차상위",
+        "capacity": "7",
+        "method": "학생부70+면접30",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "low-income",
+            "section_title": "기초생활수급자·차상위계층·한부모가족지원대상자 특별전형",
+            "page": 296
+          }
+        ]
+      },
+      {
+        "admission_type": "학생부교과",
+        "track_name": "특수교육대상자",
+        "capacity": "10",
+        "method": "학생부70+면접30",
+        "csat_minimum": "없음",
+        "notes": "교과 특별전형",
+        "source_refs": [
+          {
+            "section_id": "disability",
+            "section_title": "장애인 등 대상자 특별전형",
+            "page": 319
           }
         ]
       }
