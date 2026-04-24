@@ -20,6 +20,7 @@
     --detail-pad-top: clamp(24px, 3.4vw, 52px);
     --detail-pad-side: clamp(36px, 5vw, 80px);
     --detail-pad-bottom: clamp(36px, 5vh, 60px);
+    --search-bg: #ffffff;
   }
 
   * { box-sizing: border-box; }
@@ -151,12 +152,16 @@
     background: transparent;
     padding: 0;
     cursor: pointer;
-    transition: transform 280ms cubic-bezier(.22, 1, .36, 1), opacity 180ms ease;
+    transition:
+      transform 280ms cubic-bezier(.22, 1, .36, 1),
+      opacity 180ms ease,
+      filter 220ms ease;
     will-change: transform;
   }
 
   .title-button:hover {
     transform: translateX(4px) translateY(-1px);
+    filter: brightness(1.2);
   }
 
   .title .year,
@@ -192,13 +197,12 @@
 
   .search-input {
     width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    border-bottom: 0;
+    border: 0;
     border-radius: 0;
     padding: 18px 22px;
     outline: none;
-    color: #1a1a1a;
-    background: #ffffff;
+    color: #ef6342;
+    background: var(--search-bg);
     font-family: var(--font);
     font-size: clamp(15px, 1.5vw, 18px);
     font-weight: 300;
@@ -207,8 +211,24 @@
     transition: border-color 200ms ease, box-shadow 200ms ease;
   }
 
+  /* 기본 브라우저의 clear(x) 버튼 제거 */
+  .search-input::-webkit-search-cancel-button,
+  .search-input::-webkit-search-decoration,
+  .search-input::-webkit-search-results-button,
+  .search-input::-webkit-search-results-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+  .search-input::-ms-clear,
+  .search-input::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
   .search-input::placeholder {
-    color: #9a9a9a;
+    color: rgba(239, 99, 66, 0.55);
     font-weight: 300;
     transition: opacity 180ms ease;
   }
@@ -216,7 +236,7 @@
   .search-input:focus::placeholder { opacity: 0; }
 
   .search-input:focus {
-    border-color: #fff;
+    box-shadow: none;
   }
 
   .suggestions {
@@ -231,9 +251,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.45);
-    border-top: 1px solid rgba(0, 0, 0, 0.12);
-    background: #fff;
+    border: 0;
+    background: rgba(235, 222, 216, 1);
     box-shadow: none;
     transform-origin: top center;
     opacity: 0;
@@ -272,15 +291,19 @@
     border: 0;
     background: transparent;
     padding: 12px 22px;
-    color: #1a1a1a;
-    text-align: left;
+    color: #ef6342;
+    text-align: center;
     cursor: pointer;
     font-family: var(--font);
   }
 
-  .suggestion:hover,
-  .suggestion.active {
-    background: #fff4f0;
+  .suggestion:hover {
+    background: rgba(255, 239, 234, 0.95);
+  }
+
+  /* 사용자가 목록 안에 마우스를 두지 않을 때만 첫 항목 활성화 표시 */
+  .suggestions:not(.mouse-inside) .suggestion.active {
+    background: rgba(255, 239, 234, 0.95);
   }
 
   .suggestion strong {
@@ -293,7 +316,7 @@
   .suggestion span {
     display: block;
     margin-top: 2px;
-    color: #888;
+    color: rgba(239, 99, 66, 0.7);
     font-size: 12px;
     font-weight: 300;
   }
@@ -382,17 +405,20 @@
     color: var(--ink);
     text-decoration: none;
     cursor: pointer;
-    transition: transform 280ms cubic-bezier(.22, 1, .36, 1), opacity 180ms ease;
+    transition:
+      transform 280ms cubic-bezier(.22, 1, .36, 1),
+      opacity 180ms ease,
+      filter 220ms ease;
     will-change: transform;
   }
 
   .detail-head .title-link:hover {
     transform: translateX(4px) translateY(-1px);
+    filter: brightness(1.2);
   }
 
   .detail-head .title-link:hover h2,
   .detail-head .title-link:focus-visible h2 {
-    opacity: 0.92;
     transform: translateX(1px);
   }
 
@@ -640,7 +666,11 @@
     opacity: 0;
     pointer-events: none;
     transform: translateX(0);
-    transition: opacity 400ms ease, transform 280ms cubic-bezier(.22, 1, .36, 1), color 180ms ease;
+    transition:
+      opacity 400ms ease,
+      transform 280ms cubic-bezier(.22, 1, .36, 1),
+      color 180ms ease,
+      filter 220ms ease;
   }
 
   body.expanded .back {
@@ -649,8 +679,9 @@
   }
 
   .back:hover {
-    color: rgba(255, 255, 255, 0.82);
+    color: #ffffff;
     transform: translateX(4px) translateY(-1px);
+    filter: brightness(1.3);
   }
 
   @keyframes float {
@@ -667,7 +698,7 @@
     :root {
       --margin-x: 12px;
       --margin-y: 24px;
-      --detail-pad-top: 16px;
+      --detail-pad-top: 52px;
       --detail-pad-side: 16px;
       --detail-pad-bottom: 28px;
     }
@@ -678,7 +709,11 @@
     }
 
     .detail {
-      padding: var(--detail-pad-top) var(--detail-pad-side) var(--detail-pad-bottom);
+      padding:
+        var(--detail-pad-top)
+        var(--detail-pad-side)
+        var(--detail-pad-bottom)
+        48px; /* back 버튼 겹침 방지용 좌측 여백 */
       min-width: 0;
     }
 
@@ -801,6 +836,95 @@
     </section>
   </main>
 
+  <aside class="tweaks-panel" id="tweaksPanel" aria-label="Tweaks" hidden>
+    <div class="tweaks-head">
+      <span>Tweaks</span>
+      <button type="button" class="tweaks-close" id="tweaksClose" aria-label="닫기">×</button>
+    </div>
+    <div class="tweaks-row">
+      <label for="tw-search-bg">검색창 배경 색</label>
+      <div class="tweaks-color">
+        <input type="color" id="tw-search-bg-picker" value="#ef6342" />
+        <input type="range" id="tw-search-bg-alpha" min="0" max="100" step="1" value="4" />
+        <span id="tw-search-bg-readout">rgba(239,99,66,0.04)</span>
+      </div>
+    </div>
+  </aside>
+
+  <style>
+    .tweaks-panel {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      width: 280px;
+      background: rgba(20, 14, 10, 0.94);
+      color: #fff;
+      padding: 12px 14px 14px;
+      border-radius: 10px;
+      font-family: var(--font);
+      font-size: 12px;
+      z-index: 9999;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .tweaks-panel[hidden] { display: none; }
+    .tweaks-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 10px;
+    }
+    .tweaks-close {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0 4px;
+      opacity: 0.65;
+    }
+    .tweaks-close:hover { opacity: 1; }
+    .tweaks-row { display: grid; gap: 6px; }
+    .tweaks-row label {
+      font-size: 11px;
+      opacity: 0.85;
+      letter-spacing: 0.02em;
+    }
+    .tweaks-color {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      align-items: center;
+      gap: 8px;
+    }
+    .tweaks-color input[type="color"] {
+      width: 34px;
+      height: 28px;
+      padding: 0;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: transparent;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .tweaks-color input[type="range"] {
+      width: 100%;
+      accent-color: #ef6342;
+    }
+    .tweaks-color #tw-search-bg-readout {
+      grid-column: 1 / -1;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 10px;
+      opacity: 0.7;
+      letter-spacing: 0;
+    }
+  </style>
+
   <script src="./data/derived/university-info-119/universities.js"></script>
   <script>
   (function () {
@@ -862,6 +986,13 @@
     const titleButton = document.getElementById("titleButton");
     const suggestions = document.getElementById("suggestions");
     const detail = document.getElementById("detail");
+
+    suggestions.addEventListener("mouseenter", () => {
+      suggestions.classList.add("mouse-inside");
+    });
+    suggestions.addEventListener("mouseleave", () => {
+      suggestions.classList.remove("mouse-inside");
+    });
     const panel = document.getElementById("panel");
     const back = document.getElementById("back");
 
@@ -935,23 +1066,45 @@
       expand();
     }
 
+    let lastMatchKey = "";
+
+    function activeIdxOr0(len) {
+      if (!len) return -1;
+      return state.activeIndex >= 0 && state.activeIndex < len ? state.activeIndex : 0;
+    }
+
     function renderSuggestions(matches = getMatches()) {
       if (!matches.length) {
+        lastMatchKey = "";
         suggestions.classList.remove("open");
         setTimeout(() => {
           if (!suggestions.classList.contains("open")) {
             suggestions.innerHTML = "";
             suggestions.classList.add("hidden");
           }
-        }, 420);
+        }, 200);
         return;
       }
 
+      const activeIdx = activeIdxOr0(matches.length);
+      const key = matches.map(u => u.id || u.name).join("|");
+
+      // 동일한 매치 목록이면 DOM을 재생성하지 않고 active만 갱신
+      if (key === lastMatchKey && !suggestions.classList.contains("hidden")) {
+        suggestions.querySelectorAll("[data-index]").forEach(button => {
+          const i = Number(button.dataset.index);
+          button.classList.toggle("active", i === activeIdx);
+        });
+        suggestions.classList.add("open");
+        return;
+      }
+
+      lastMatchKey = key;
       suggestions.classList.remove("hidden");
       void suggestions.offsetWidth;
       suggestions.innerHTML = matches.map((university, index) => {
         return `
-          <button class="suggestion ${index === state.activeIndex ? "active" : ""}" type="button" data-index="${index}">
+          <button class="suggestion ${index === activeIdx ? "active" : ""}" type="button" data-index="${index}">
             <strong>${escapeHtml(university.name)}</strong>
           </button>
         `;
@@ -1176,20 +1329,50 @@
       renderSuggestions(getMatches());
     });
 
+    // 한글 등 IME 조합 중에도 즉시 미리보기 갱신 (조합 중인 글자까지 포함)
+    searchInput.addEventListener("compositionupdate", event => {
+      const base = searchInput.value.slice(0, searchInput.selectionStart || searchInput.value.length);
+      // 조합 중 글자는 아직 value에 반영되지 않았을 수 있으므로 data를 합쳐서 매칭
+      const composed = (searchInput.value || "") + (event.data || "");
+      state.query = composed || searchInput.value;
+      state.selected = null;
+      state.activeIndex = -1;
+      renderSuggestions(getMatches());
+    });
+
+    function ensureActiveVisible() {
+      const active = suggestions.querySelector(".suggestion.active");
+      if (!active) return;
+      const cTop = suggestions.scrollTop;
+      const cBottom = cTop + suggestions.clientHeight;
+      const aTop = active.offsetTop;
+      const aBottom = aTop + active.offsetHeight;
+      if (aTop < cTop) {
+        suggestions.scrollTop = aTop;
+      } else if (aBottom > cBottom) {
+        suggestions.scrollTop = aBottom - suggestions.clientHeight;
+      }
+    }
+
     searchInput.addEventListener("keydown", event => {
       const matches = getMatches();
       if (!matches.length) return;
 
       if (event.key === "ArrowDown") {
         event.preventDefault();
-        state.activeIndex = Math.min(state.activeIndex + 1, matches.length - 1);
+        // -1이면 시각상 0번이 이미 강조돼 있으므로 0에서 출발해 증가
+        const current = state.activeIndex < 0 ? 0 : state.activeIndex;
+        state.activeIndex = Math.min(current + 1, matches.length - 1);
         renderSuggestions(matches);
+        ensureActiveVisible();
       }
 
       if (event.key === "ArrowUp") {
         event.preventDefault();
-        state.activeIndex = Math.max(state.activeIndex - 1, 0);
+        const current = state.activeIndex < 0 ? 0 : state.activeIndex;
+        state.activeIndex = Math.max(current - 1, 0);
         renderSuggestions(matches);
+        ensureActiveVisible();
       }
 
       if (event.key === "Enter") {
@@ -1233,6 +1416,87 @@
         collapse();
       }
     });
+  })();
+  </script>
+
+  <script>
+  (function () {
+    const TWEAKS = /*EDITMODE-BEGIN*/{
+      "searchBg": {
+        "hex": "#ebded8",
+        "alpha": 100
+      }
+    }/*EDITMODE-END*/;
+
+    const panel = document.getElementById("tweaksPanel");
+    const closeBtn = document.getElementById("tweaksClose");
+    const picker = document.getElementById("tw-search-bg-picker");
+    const alpha = document.getElementById("tw-search-bg-alpha");
+    const readout = document.getElementById("tw-search-bg-readout");
+    const root = document.documentElement;
+
+    function hexToRgb(hex) {
+      const m = /^#?([a-f0-9]{6})$/i.exec((hex || "").trim());
+      if (!m) return { r: 239, g: 99, b: 66 };
+      const n = parseInt(m[1], 16);
+      return { r: (n >> 16) & 0xff, g: (n >> 8) & 0xff, b: n & 0xff };
+    }
+
+    function applyTweaks() {
+      const { r, g, b } = hexToRgb(TWEAKS.searchBg.hex);
+      const a = (Number(TWEAKS.searchBg.alpha) || 0) / 100;
+      const rgba = `rgba(${r}, ${g}, ${b}, ${a.toFixed(2)})`;
+      root.style.setProperty("--search-bg", rgba);
+      if (readout) readout.textContent = rgba;
+      if (picker && picker.value.toLowerCase() !== TWEAKS.searchBg.hex.toLowerCase()) {
+        picker.value = TWEAKS.searchBg.hex;
+      }
+      if (alpha && Number(alpha.value) !== Number(TWEAKS.searchBg.alpha)) {
+        alpha.value = TWEAKS.searchBg.alpha;
+      }
+    }
+
+    function persist() {
+      try {
+        window.parent.postMessage(
+          { type: "__edit_mode_set_keys", edits: { searchBg: { ...TWEAKS.searchBg } } },
+          "*"
+        );
+      } catch (e) {}
+    }
+
+    picker && picker.addEventListener("input", () => {
+      TWEAKS.searchBg.hex = picker.value;
+      applyTweaks();
+    });
+    picker && picker.addEventListener("change", persist);
+
+    alpha && alpha.addEventListener("input", () => {
+      TWEAKS.searchBg.alpha = Number(alpha.value);
+      applyTweaks();
+    });
+    alpha && alpha.addEventListener("change", persist);
+
+    closeBtn && closeBtn.addEventListener("click", () => {
+      panel.hidden = true;
+      try {
+        window.parent.postMessage({ type: "__edit_mode_dismissed" }, "*");
+      } catch (e) {}
+    });
+
+    window.addEventListener("message", (event) => {
+      const data = event.data || {};
+      if (data.type === "__activate_edit_mode") {
+        panel.hidden = false;
+      } else if (data.type === "__deactivate_edit_mode") {
+        panel.hidden = true;
+      }
+    });
+
+    applyTweaks();
+    try {
+      window.parent.postMessage({ type: "__edit_mode_available" }, "*");
+    } catch (e) {}
   })();
   </script>
 </body>
