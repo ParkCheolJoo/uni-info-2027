@@ -1,0 +1,16 @@
+{
+  "name": "2027학년도 대입정보",
+  "short_name": "대입정보",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ef6342",
+  "theme_color": "#ef6342",
+  "icons": [
+    {
+      "src": "web/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

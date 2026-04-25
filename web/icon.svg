@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">2027학년도 대입정보 앱 아이콘</title>
+  <desc id="desc">심플한 코랄 배경 위에 흰색 열린 책 모양을 배치한 아이콘</desc>
+  <rect x="24" y="24" width="464" height="464" rx="108" fill="#ef6342"/>
+  <path d="M128 166c44 0 76 14 102 43v142c-26-20-58-30-102-30V166Zm256 0c-44 0-76 14-102 43v142c26-20 58-30 102-30V166Z" fill="#fff"/>
+  <rect x="248" y="158" width="16" height="196" rx="8" fill="#ffd8cc"/>
+  <circle cx="256" cy="120" r="20" fill="#fff"/>
+</svg>
